@@ -3,14 +3,12 @@ import "@styles/globals.css";
 
 const Home = () => {
   return (
-    <section className="w-full flex-center flex-col">
+    <section className="w-full flex-center flex-col ">
       {/* head_text is func in global.css file */}
-      <h1 className="head_text text-center">
+      <h1 className="head_text text-center ">
         Discover & share
-        <br className="max-md:hidden"/>
-        <span className="orange_gradient">
-          AI-Powered Prompts
-        </span>
+        <br className="max-md:hidden" />
+        <span className="orange_gradient">AI-Powered Prompts</span>
       </h1>
       <p className="desc text_center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -21,6 +19,7 @@ const Home = () => {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+
       <Feed />
     </section>
   );

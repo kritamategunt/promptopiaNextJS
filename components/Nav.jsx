@@ -8,7 +8,7 @@ import { signIn, signOut, getSession, getProviders } from "next-auth";
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(false);
-  const [toggleDropdown, setToggledropdown] = useState(true);
+  const [toggleDropdown, setToggledropdown] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
