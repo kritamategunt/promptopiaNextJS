@@ -1,4 +1,5 @@
 import Feed from "@components/feed";
+import "@styles/globals.css";
 
 const Home = () => {
   return (
