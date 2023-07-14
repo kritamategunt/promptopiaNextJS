@@ -3,21 +3,18 @@ import "@styles/globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { signIn, signOut, getSession, getProviders } from "next-auth";
+import { signIn, signOut, getProviders, useSession } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(false);
   const [toggleDropdown, setToggledropdown] = useState(false);
 
   useEffect(() => {
-    const setProviders = async () => {
-      const response = await getProviders();
-
-      setProviders(response);
-    };
-
-    setProviders();
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
   }, []);
 
   return (
@@ -32,9 +29,12 @@ const Nav = () => {
         />
         <p className="logo_text">Promptopia</p>
       </Link>
+
+      {alert(session?.user)}
+
       {/* Desktop Navigation */}
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
@@ -75,7 +75,7 @@ const Nav = () => {
 
       {/* mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex">
             <Image
               src="/assets/images/logo.svg"
@@ -106,7 +106,7 @@ const Nav = () => {
                   onClick={() => {
                     setToggledropdown(false);
                     signOut();
-                    console.log("click")
+                    console.log("click");
                   }}
                   className="rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center"
                 >
